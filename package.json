@@ -1,0 +1,29 @@
+{
+  "name": "node-red-contrib-node-ais",
+  "version": "0.0.1",
+  "description": "A node to decode AIS (AIMVD) messages into a readable and understandable JSON format.",
+  "main": "node-ais.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boonzaai/node-red-contrib-node-ais.git"
+  },
+  "keywords": [
+    "ais",
+    "protocol",
+    "decoder"
+  ],
+  "node-red": {
+    "nodes": {
+      "ais": "node-ais.js"
+    }
+  },
+  "author": "André Boonzaaijer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boonzaai/node-red-contrib-node-ais/issues"
+  },
+  "homepage": "https://github.com/boonzaai/node-red-contrib-node-ais#readme"
+}
