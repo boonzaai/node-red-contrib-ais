@@ -1,3 +1,11 @@
+function uintToInt(uint, nbit) {
+    nbit = +nbit || 32;
+    if (nbit > 32) throw new RangeError('uintToInt only supports ints up to 32 bits');
+    uint <<= 32 - nbit;
+    uint >>= 32 - nbit;
+    return uint;
+}
+
 var translations = {
     "0": "000000",
     "1": "000001",
@@ -116,10 +124,10 @@ function AISMessage(content) {
         self.struct.speedOverGround = (parseInt(relevantpart, 2)) / 10;
         //Longitude, 61-88
         relevantpart = self.binarr.substring(61, 89);
-        self.struct.longitude = (parseInt(relevantpart, 2)) / 600000.0;
-        //Longitude, 61-88
+        self.struct.longitude = uintToInt((parseInt(relevantpart, 2)),28) / 600000.0;
+        //Latitude, 89-115
         relevantpart = self.binarr.substring(89, 116);
-        self.struct.latitude = (parseInt(relevantpart, 2)) / 600000.0;
+        self.struct.latitude = uintToInt((parseInt(relevantpart, 2)),27) / 600000.0;
         //Course over Ground, 116-127
         relevantpart = self.binarr.substring(116, 128);
         self.struct.courseOverGround = (parseInt(relevantpart, 2)) / 10;
@@ -145,6 +153,7 @@ function AISMessage(content) {
         self.exception = e;
     }
 }
+
 
 module.exports = function (RED) {
     function AISNode(config) {
